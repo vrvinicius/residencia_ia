@@ -3,7 +3,7 @@
 Este repositório é onde se encontra tudo (estudos, materiais de aula, atividades práticas e mais) relacionado à minha [Residência em Inteligência Artificial](https://paranacooperativo.coop.br/noticias-inovacao/divulgados-os-aprovados-para-o-programa-de-residencia-em-inteligencia-artificial).
 
 ## Principais Projetos
-> Logo terá projetos legais por aqui!
+> Em breve, haverá projetos legais por aqui!
 
 ### Assuntos estudados
 
