@@ -209,7 +209,7 @@ class Game:
     def __init__(self):
         self.board = Board()
         self.ai = Cleverness()
-        self.player = 1  # next player to move // 1-cross 2-circle
+        self.player = 1  # select player to start: 1- human / 2- ai
         self.gamemode = "ai"  # pvp or ai
         self.running = True
         self.show_lines()
