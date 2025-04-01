@@ -4,7 +4,6 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import math
 
-# Load the TSP problem
 tsp_problem = "att48.tsp"
 file_path = f"C:/Users/vinicius_vieira/OneDrive - Sicredi/Residência IA/Códigos/Inteligência Artificial/Atividades Avaliativas/2_Caixeiro Viajante/data/{tsp_problem}"
 problem = tsp.load(file_path)
@@ -15,7 +14,7 @@ edges = list(problem.get_edges())
 G = problem.get_graph()
 
 
-# Recalculate edge weights based on Euclidean distance
+# recalculating edge weights based on Euclidean distance
 def euclidean_distance(coord1, coord2):
     return math.sqrt((coord1[0] - coord2[0]) ** 2 + (coord1[1] - coord2[1]) ** 2)
 
@@ -25,7 +24,7 @@ def recalculate_edge_weights(G, node_coords):
         G[u][v]["weight"] = euclidean_distance(node_coords[u], node_coords[v])
 
 
-node_coords = problem.node_coords
+node_coords = problem.node_coords  # replacing the nodes for the new calculated ones
 
 recalculate_edge_weights(G, node_coords)
 
@@ -33,13 +32,17 @@ recalculate_edge_weights(G, node_coords)
 def nearest_neighbor_tsp(G, start_node):
     path = [start_node]
     while len(path) < len(G.nodes):
-        last_node = path[-1]
+        last_visited_node = path[-1]
         next_node = min(
-            (node for node in G.nodes if node not in path),
-            key=lambda node: G[last_node][node]["weight"],
+            (
+                node for node in G.nodes if node not in path
+            ),  # all nodes thar are not in the path yet
+            key=lambda node: G[last_visited_node][node][
+                "weight"
+            ],  # return the disacne between the last visited node and the possible next
         )
         path.append(next_node)
-    path.append(start_node)  # Return to the start node
+    path.append(start_node)  # return to the start node
     return path
 
 
@@ -54,7 +57,7 @@ def calculate_total_distance(G, tsp_path):
     return total_distance
 
 
-# Find the best starting node
+# finding the best starting node
 best_start_node = None
 min_total_distance = float("inf")
 best_tsp_path = None
@@ -62,7 +65,9 @@ best_tsp_path = None
 for node in G.nodes:
     tsp_path = nearest_neighbor_tsp(G, node)
     total_distance = calculate_total_distance(G, tsp_path)
-    if total_distance < min_total_distance:
+    if (
+        total_distance < min_total_distance
+    ):  # validate if it is the shortest distance possible
         min_total_distance = total_distance
         best_start_node = node
         best_tsp_path = tsp_path
