@@ -4,16 +4,41 @@ import numpy as np
 import random
 import math
 import copy
-from constants import *
+
+# board configs
+WIDTH = 500
+HEIGHT = 500
+
+ROWS = 3
+COLUMNS = 3
+
+SQUARE_SIZE = WIDTH // COLUMNS
+
+LINE_WIDTH = 15
+CIRC_WIDTH = 15
+CROSS_WIDTH = 20
+
+RADIUS = SQUARE_SIZE // 4
+
+OFFSET = 50
+
+BACKGROUND_COLOR = (28, 170, 156)
+LINE_COLOR = (23, 145, 135)
+CIRC_COLOR = (239, 231, 200)
+CROSS_COLOR = (66, 66, 66)
 
 # pygame setup
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 screen.fill(BACKGROUND_COLOR)
-pygame.display.set_caption("JOGO DA VELHA IA")
+pygame.display.set_caption("JOGO DA VELHA - IA")
 
 
 class Board:
+    """
+    class with the funcionalities of game board
+    """
+
     def __init__(self):
         self.squares = np.zeros((ROWS, COLUMNS))
         self.empty_squares = self.squares  # list of empty squares
@@ -100,6 +125,9 @@ class Board:
 
 
 class Cleverness:
+    """
+    class to define the difficulty level of the game. Options are: 0 - Easy mode (random choice) or 1 - Hard mode (AI).
+    """
 
     def __init__(self, level=1, player=2):  # ai is player 2
         self.level = level
@@ -172,6 +200,9 @@ class Cleverness:
 
 
 class Game:
+    """
+    class with the game actions
+    """
 
     def __init__(self):
         self.board = Board()
