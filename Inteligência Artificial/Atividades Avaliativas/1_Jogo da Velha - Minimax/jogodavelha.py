@@ -156,12 +156,14 @@ class Cleverness:
             return 0, None
 
         if is_maximizing:
-            max_eval = -math.inf
+            max_eval = -math.inf  # lower value possible
             best_move = None
             empty_squares = board.get_empty_squares()
 
             for row, col in empty_squares:
-                temp_board = copy.deepcopy(board)
+                temp_board = copy.deepcopy(
+                    board
+                )  # make a copy of the board to evaluate the moves
                 temp_board.mark_square(row, col, 1)  # player 1
                 eval = self.minimax(temp_board, False)[0]
                 if eval > max_eval:
@@ -171,7 +173,7 @@ class Cleverness:
             return max_eval, best_move
 
         elif not is_maximizing:
-            min_eval = math.inf
+            min_eval = math.inf  # highest value possible
             best_move = None
             empty_squares = board.get_empty_squares()
 
@@ -311,6 +313,9 @@ def main():
                     game.make_move(row, col)
 
             if event.type == pygame.KEYDOWN:
+                """
+                commands to do during the game:
+                """
                 # g-chance gamemode
                 if event.key == pygame.K_g:
                     game.change_gamemode()
