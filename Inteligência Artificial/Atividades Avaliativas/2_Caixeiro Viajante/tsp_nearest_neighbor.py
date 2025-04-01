@@ -5,17 +5,14 @@ import matplotlib.pyplot as plt
 import math
 
 # Load the TSP problem
-file_path = r"C:\Users\vinicius_vieira\OneDrive - Sicredi\Residência IA\Códigos\Inteligência Artificial\Atividades Avaliativas\2_Caixeiro Viajante\data\ali535.tsp"
+tsp_problem = "att48.tsp"
+file_path = f"C:/Users/vinicius_vieira/OneDrive - Sicredi/Residência IA/Códigos/Inteligência Artificial/Atividades Avaliativas/2_Caixeiro Viajante/data/{tsp_problem}"
 problem = tsp.load(file_path)
 
 nodes = list(problem.get_nodes())
 edges = list(problem.get_edges())
 
-print(nodes)
-print(edges)
-# %%
 G = problem.get_graph()
-print(G)
 
 
 # Recalculate edge weights based on Euclidean distance
@@ -29,8 +26,8 @@ def recalculate_edge_weights(G, node_coords):
 
 
 node_coords = problem.node_coords
+
 recalculate_edge_weights(G, node_coords)
-# %%
 
 
 def nearest_neighbor_tsp(G, start_node):
@@ -70,6 +67,7 @@ for node in G.nodes:
         best_start_node = node
         best_tsp_path = tsp_path
 
+print("Problem: ", tsp_problem)
 print("Best start node:", best_start_node)
 print("Best TSP Path:", best_tsp_path)
 print("Number of nodes in Best TSP Path:", count_tsp_path_nodes(best_tsp_path))
