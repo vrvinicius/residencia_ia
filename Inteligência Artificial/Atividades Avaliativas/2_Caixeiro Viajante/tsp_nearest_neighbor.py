@@ -4,7 +4,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import math
 
-tsp_problem = "att48.tsp"
+tsp_problem = "ali535.tsp"
 file_path = f"C:/Users/vinicius_vieira/OneDrive - Sicredi/Residência IA/Códigos/Inteligência Artificial/Atividades Avaliativas/2_Caixeiro Viajante/data/{tsp_problem}"
 problem = tsp.load(file_path)
 
